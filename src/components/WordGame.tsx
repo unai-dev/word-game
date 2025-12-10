@@ -2,26 +2,57 @@ import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { Card, CardContent } from "../components/ui/card";
 import { SkipForward, Play } from "lucide-react";
-import { useWordGame } from "../hooks/useWordGame";
+import { useEffect, useReducer } from "react";
+import { getInitialState, WordGameReducer } from "./wordGameReducer";
+import confetti from "canvas-confetti";
 
 export const WordGame = () => {
+  const [state, dispatch] = useReducer(WordGameReducer, getInitialState());
   const {
-    GAME_WORDS,
-    handleGuessSubmit,
-    handleSkip,
-    handlePlayAgain,
-    words,
-    skipCounter,
-    errorCounter,
-    points,
-    isGameOver,
-    currentWord,
-    scrambledWord,
-    setGuess,
     guess,
-    maxSkips,
+    currentWord,
+    errorCounter,
+    isGameOver,
     maxAllowErrors,
-  } = useWordGame();
+    maxSkips,
+    points,
+    scrambledWord,
+    skipCounter,
+    totalWords,
+    words,
+  } = state;
+
+  useEffect(() => {
+    if (!(points === 0)) {
+      confetti({
+        particleCount: 100,
+        spread: 120,
+        origin: { y: 0.6 },
+      });
+    }
+  }, [points]);
+
+  const handleGuessSubmit = (e: React.FormEvent) => {
+    // Previene el refresh de la página
+    e.preventDefault();
+
+    dispatch({
+      type: "CHECK_ANSWER",
+    });
+  };
+
+  const handleSkip = () => {
+    dispatch({
+      type: "SKIP_WORD",
+    });
+  };
+
+  const handlePlayAgain = () => {
+    dispatch({
+      type: "PLAY_AGAIN",
+      payload: getInitialState(),
+    });
+  };
 
   //! Si ya no hay palabras para jugar, se muestra el mensaje de fin de juego
   if (words.length === 0) {
@@ -100,9 +131,12 @@ export const WordGame = () => {
                     id="guess"
                     type="text"
                     value={guess}
-                    onChange={(e) =>
-                      setGuess(e.target.value.toUpperCase().trim())
-                    }
+                    onChange={(e) => {
+                      dispatch({
+                        type: "GUESS",
+                        payload: e.target.value,
+                      });
+                    }}
                     placeholder="Ingresa tu palabra..."
                     className="text-center text-lg font-semibold h-12 border-2 border-indigo-200 focus:border-indigo-500 transition-colors"
                     maxLength={scrambledWord.length}
@@ -123,7 +157,7 @@ export const WordGame = () => {
             <div className="grid grid-cols-2 gap-4 mb-6">
               <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg p-4 text-center border border-green-200">
                 <div className="text-2xl font-bold text-green-600">
-                  {points} / {GAME_WORDS.length}
+                  {points} / {totalWords}
                 </div>
                 <div className="text-sm text-green-700 font-medium">Puntos</div>
               </div>
