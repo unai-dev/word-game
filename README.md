@@ -1,73 +1,19 @@
-# React + TypeScript + Vite
+# Juego de la palabra desordenada
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este juego consiste en adivinar una palabra desordenada, teniendo como referencia una palabra mezclada. El jugador tiene 3 oportunidades para fallar y 3 oportunidades para saltarse una palabra.
 
-Currently, two official plugins are available:
+**Reglas del juego**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- El usuario tiene 3 oportunidades para fallar, si falla 3 veces, el juego termina.
+- El usuario tiene 3 oportunidades para saltarse una palabra, si se saltea 3 veces, el juego termina.
+- Si el usuario adivina la palabra correcta, se le sumara 1 punto y se le dara una nueva palabra para adivinar.
+- Si el usuario falla o se saltea, se le restara el contador de fallos o skips respectivamente.
 
-## React Compiler
+**Objetivo del juego**
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+El objetivo del juego es adivinar todas las palabras posibles en el menor tiempo posible, teniendo en cuenta las reglas del juego.
 
-## Expanding the ESLint configuration
+# Objetivo del juego
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Tiene como objetivo:
+Este juego ha sido realizado utilizando React y TypeScript, como un ejercicio de aprendizaje de React para mi. He querido intentar aprender las bases de React y TypeScript, por lo que he decidido crear un juego simple pero divertido como este. He utilizado los hooks de React para manejar el estado del juego y tambien los tipos de TypeScript para asegurar que el codigo sea seguro y escalable.

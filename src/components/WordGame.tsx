@@ -81,7 +81,7 @@ export const WordGame = () => {
       <div className="w-full max-w-md mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent mb-2">
+          <h1 className="text-4xl font-bold bg-gradient-to-r to-yellow-700 to-blue-600 bg-clip-text text-transparent mb-2">
             Palabras desordenadas
           </h1>
           <p className="text-gray-600">
@@ -105,7 +105,7 @@ export const WordGame = () => {
                 {scrambledWord.split("").map((letter, index) => (
                   <div
                     key={index}
-                    className="w-12 h-12 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-lg flex items-center justify-center text-white font-bold text-xl shadow-lg transform hover:scale-105 transition-transform duration-200"
+                    className="w-12 h-12 bg-gradient-to-br from-indigo-500 to-yellow-600 rounded-lg flex items-center justify-center text-white font-bold text-xl shadow-lg transform hover:scale-105 transition-transform duration-200"
                     style={{
                       animationDelay: `${index * 0.1}s`,
                       animation: "fadeInUp 0.6s ease-out forwards",
@@ -145,7 +145,7 @@ export const WordGame = () => {
                 </div>
                 <Button
                   type="submit"
-                  className="w-full bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white font-semibold py-3 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-200"
+                  className="w-full bg-gradient-to-r from-indigo-500 to-yellow-600 hover:from-indigo-600 hover:to-purple-700 text-white font-semibold py-3 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-200"
                   disabled={!guess.trim() || isGameOver}
                 >
                   Enviar Adivinanza
@@ -183,7 +183,7 @@ export const WordGame = () => {
               <Button
                 onClick={handlePlayAgain}
                 variant="outline"
-                className="border-2 border-indigo-300 hover:border-indigo-400 hover:bg-indigo-50 text-indigo-600 transition-colors flex items-center justify-center gap-2"
+                className="border-2 border-indigo-300  hover:border-indigo-400 hover:bg-indigo-50 text-indigo-600 transition-colors flex items-center justify-center gap-2"
               >
                 <Play className="w-4 h-4" />
                 Jugar de nuevo
